@@ -7,7 +7,7 @@ export const generateTSClient = async (openapiFile: string): Promise<void> => {
   const generator = "typescript-axios";
 
   await execute(
-    `openapi-generator generate -i ${openapiFile} -c ${config} -g ${generator}`
+    `yarn openapi-generator generate -i ${openapiFile} -c ${config} -g ${generator}`
   );
   await execute("yarn add -D typedoc@0.19.2 typedoc-plugin-markdown@3.0.3");
 
