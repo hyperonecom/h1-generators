@@ -1,4 +1,5 @@
 import { readdirSync, readFileSync, writeFileSync } from "fs";
+import { join } from "path";
 
 // findFiles finds files with given extension in current directory,
 // but skips subdirectories
@@ -7,9 +8,11 @@ export const findFiles = async (
   extension: string
 ): Promise<string[]> => {
   const allFiles = readdirSync(location);
-  return allFiles.filter((file: string) => {
-    return file.split(".").pop() === extension;
-  });
+  return allFiles
+    .filter((file: string) => {
+      return file.split(".").pop() === extension;
+    })
+    .map((file) => join(location, file));
 };
 
 export const replaceInManyFiles = async (
