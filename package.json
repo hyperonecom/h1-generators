@@ -5,8 +5,14 @@
   "repository": "git@github.com:kuskoman/h1-generators.git",
   "author": "kkm <kubasurdej@gmail.com>",
   "license": "unlicensed",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/index.ts"
+  },
   "devDependencies": {
     "@types/node": "^14.11.2",
+    "openapi-generator": "^0.1.37",
+    "ts-node": "^9.0.0",
     "typescript": "^4.0.3"
   }
 }
