@@ -11,7 +11,26 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
-      - name: Install
+      - name: Install dependencies
         run: yarn
       - name: Generate clients
         run: yarn generate
+      - name: Configure github credentials
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+      - name: Checkout TS Client repo
+        uses: actions/checkout@v2
+        with:
+          repository: kuskoman/h1-client-ts
+          path: h1-client-ts
+      - name: Copy TS client
+        run: /bin/cp -rf ./clients/ts/* h1-client-ts
+      - name: Install dev dependencies for TS client
+        run: yarn
+      - name: Transpile TS client
+        run: yarn build
+        working-directory: h1-client-ts
+      - name: Commit TS client
+        run: git commit -m "Update $(date)" -a
+        working-directory: h1-client-ts
