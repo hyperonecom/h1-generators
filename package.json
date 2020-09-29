@@ -7,7 +7,7 @@
   "license": "unlicensed",
   "scripts": {
     "build": "tsc",
-    "generate": "ts-node src/index.ts"
+    "generate": "ts-node src/generate.ts"
   },
   "devDependencies": {
     "@types/node": "^14.11.2",
