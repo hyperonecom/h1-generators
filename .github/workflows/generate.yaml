@@ -32,5 +32,8 @@ jobs:
         run: yarn build
         working-directory: h1-client-ts
       - name: Commit TS client
-        run: git commit -m "Update $(date)" -a
+        run: |
+          git add .
+          git commit -m "Update $(date)"
+          git push
         working-directory: h1-client-ts
