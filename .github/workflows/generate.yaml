@@ -25,7 +25,7 @@ jobs:
           repository: kuskoman/h1-client-ts
           path: h1-client-ts
       - name: Copy TS client
-        run: /bin/cp -rf ./clients/ts/* h1-client-ts
+        run: /bin/cp -rf ./clients/ts/. h1-client-ts
       - name: Install dev dependencies for TS client
         run: yarn
       - name: Transpile TS client
