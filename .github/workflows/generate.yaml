@@ -1,4 +1,4 @@
-name: JavaScript files
+name: Update client libraries
 
 on: [push]
 
