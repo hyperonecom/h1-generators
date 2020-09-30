@@ -40,7 +40,7 @@ jobs:
       - name: Commit TS client
         run: |
           git add .
-          git commit -m "Update $(date)"
+          git diff-index --quiet HEAD || git commit -m "Update $(date)"
         working-directory: h1-client-ts
       - name: Push TS client
         uses: ad-m/github-push-action@master
