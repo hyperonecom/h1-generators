@@ -42,4 +42,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           directory: h1-client-ts
-          force: true
+          repository: "kuskoman/h1-client-ts"
