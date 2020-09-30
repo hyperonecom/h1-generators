@@ -33,6 +33,7 @@ jobs:
         working-directory: h1-client-ts
       - name: Commit TS client
         run: |
+          git fetch --unshallow origin
           git add .
           git commit -m "Update $(date)"
         working-directory: h1-client-ts
