@@ -4,6 +4,7 @@
   "main": "dist/index.js",
   "license": "UNLICENSED",
   "dependencies": {
+    "hyperone": "file:../../clients/ts",
     "jest": "^26.4.2",
     "ts-jest": "^26.4.1",
     "typescript": "^4.0.3"
