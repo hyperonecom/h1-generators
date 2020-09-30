@@ -35,5 +35,10 @@ jobs:
         run: |
           git add .
           git commit -m "Update $(date)"
-          git push
         working-directory: h1-client-ts
+      - name: Push TS client
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          directory: h1-client-ts
+          force: true
