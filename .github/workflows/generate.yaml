@@ -22,7 +22,7 @@ jobs:
         run: yarn build
         working-directory: ./clients/ts
       - name: Test TS client
-        run: ./execute.sh
+        run: /bin/bash ./execute.sh
         working-directory: ./tests/ts
       - name: Configure github credentials
         run: |
