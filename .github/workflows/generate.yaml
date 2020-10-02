@@ -17,9 +17,6 @@ jobs:
         run: yarn generate
       - name: Build clients
         run: yarn build-clients
-      - name: Test TS client
-        run: /bin/bash ./execute.sh
-        working-directory: ./tests/ts
       - name: Configure github credentials
         run: |
           git config --global user.email "action@github.com"
