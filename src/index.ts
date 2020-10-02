@@ -8,4 +8,7 @@ const runAllWorkflows = async () => {
   return Promise.all([runTSWorkflow(clientsLocation, openapiLocation)]);
 };
 
-runAllWorkflows();
+runAllWorkflows().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});
