@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync, writeFileSync } from "fs";
+import { readdir, readFile, writeFile } from "fs/promises";
 import { join } from "path";
 
 // findFiles finds files with given extension in current directory,
@@ -7,7 +7,7 @@ export const findFiles = async (
   location: string,
   extension: string
 ): Promise<string[]> => {
-  const allFiles = readdirSync(location);
+  const allFiles = await readdir(location);
   return allFiles
     .filter((file: string) => {
       return file.split(".").pop() === extension;
@@ -22,9 +22,9 @@ export const replaceInManyFiles = async (
 ): Promise<void[]> => {
   return Promise.all(
     files.map(async (file: string) => {
-      const content = readFileSync(file, "utf8");
+      const content = await readFile(file, "utf8");
       const replacedText = content.split(textToReplace).join(replacementText);
-      return writeFileSync(file, replacedText, { encoding: "utf-8" });
+      return writeFile(file, replacedText, { encoding: "utf-8" });
     })
   );
 };
