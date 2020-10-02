@@ -1,6 +1,6 @@
 import { join } from "path";
-import { buildTSClient } from "../builders/ts";
 import { generateTSClient } from "../generators/ts";
+import { execute } from "../utils/shellUtils";
 
 export const runTSWorkflow = async (
   clientsLocation: string,
@@ -8,5 +8,5 @@ export const runTSWorkflow = async (
 ): Promise<void> => {
   const tsClientLocation = join(clientsLocation, "ts");
   await generateTSClient(openapiLocation, tsClientLocation);
-  await buildTSClient(tsClientLocation);
+  await execute("/bin/bash ./execute.sh", tsClientLocation);
 };
