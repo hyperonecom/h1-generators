@@ -11,16 +11,16 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "14.x"
+      - name: Configure github credentials
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
       - name: Install dependencies
         run: yarn
       - name: Generate clients
         run: yarn generate
       - name: Build clients
         run: yarn build-clients
-      - name: Configure github credentials
-        run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
       - name: Checkout TS Client repo
         uses: actions/checkout@v2
         with:
