@@ -15,12 +15,8 @@ jobs:
         run: yarn
       - name: Generate clients
         run: yarn generate
-      - name: Install dev dependencies for TS client
-        run: yarn
-        working-directory: ./clients/ts
-      - name: Transpile TS client
-        run: yarn build
-        working-directory: ./clients/ts
+      - name: Build clients
+        run: yarn build-clients
       - name: Test TS client
         run: /bin/bash ./execute.sh
         working-directory: ./tests/ts
