@@ -15,25 +15,6 @@ jobs:
         run: yarn
       - name: Generate clients
         run: yarn generate
-      - name: Upload generated clients as artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: clients
-          path: ./clients/
-
-  typescript-client:
-    needs: generate
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Set up Node 12.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: "12.x"
-      - name: Download generated clients
-        uses: actions/download-artifact@v2
-        with:
-          name: clients
       - name: Install dev dependencies for TS client
         run: yarn
         working-directory: ./clients/ts
