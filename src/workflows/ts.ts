@@ -1,6 +1,6 @@
 import { join } from "path";
 import { buildTSClient } from "../builders/ts";
-import { generateTSClient } from "../generators/ts/generate";
+import { generateTSClient } from "../generators/ts";
 
 export const runTSWorkflow = async (
   clientsLocation: string,
