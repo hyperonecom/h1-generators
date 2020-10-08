@@ -1,22 +1,31 @@
 import { join } from "path";
-import { GeneratorFunctionInput } from "./types";
+import { argv } from "process";
+import { GeneratorFunctionInput, GeneratorFunction } from "./types";
 import { runTSWorkflow } from "./workflows/ts";
 
 const clientsLocation = join(__dirname, "..", "clients");
 const openapiLocation = join(__dirname, "..", "openapi.json");
 const testsLocation = join(__dirname, "..", "tests");
+const [_arg1, _arg2, lang, token] = argv;
 
 const generatorInput: GeneratorFunctionInput = {
   clientsLocation,
   openapiLocation,
   testsLocation,
+  token,
 };
 
-const runAllWorkflows = async () => {
-  return Promise.all([runTSWorkflow(generatorInput)]);
-};
+const allWorkflows = new Map<string, GeneratorFunction>();
+allWorkflows.set("ts", runTSWorkflow);
 
-runAllWorkflows().catch((e) => {
+const runSelectedWorkflow = async () => {
+  const workflow = allWorkflows.get(lang);
+  if (typeof workflow !== "function") {
+    console.error(`Can't find workflow for language: ${lang}`);
+    process.exit(1);
+  }
+};
+runSelectedWorkflow().catch((e) => {
   console.error(e);
   process.exit(1);
 });
