@@ -6,13 +6,12 @@ import { runTSWorkflow } from "./workflows/ts";
 const clientsLocation = join(__dirname, "..", "clients");
 const openapiLocation = join(__dirname, "..", "openapi.json");
 const testsLocation = join(__dirname, "..", "tests");
-const [_arg1, _arg2, lang, token] = argv;
+const [, , lang] = argv;
 
 const generatorInput: GeneratorFunctionInput = {
   clientsLocation,
   openapiLocation,
   testsLocation,
-  token,
 };
 
 const allWorkflows = new Map<string, GeneratorFunction>();
@@ -24,6 +23,8 @@ const runSelectedWorkflow = async () => {
     console.error(`Can't find workflow for language: ${lang}`);
     process.exit(1);
   }
+
+  workflow(generatorInput);
 };
 runSelectedWorkflow().catch((e) => {
   console.error(e);

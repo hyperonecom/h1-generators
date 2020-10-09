@@ -17,8 +17,8 @@ jobs:
           git config --global user.name "GitHub Action"
       - name: Install dependencies
         run: yarn
-      - name: Generate and build clients
-        run: yarn start
+      - name: Generate TS client
+        run: yarn start ts
       - name: Checkout TS Client repo
         uses: actions/checkout@v2
         with:
