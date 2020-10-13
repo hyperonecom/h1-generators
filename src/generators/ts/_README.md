@@ -72,3 +72,7 @@ const getProjects = async () => {
 
 getProjects();
 ```
+
+## Documentation
+
+For full documentation of this library check [docs directory](docs/).
