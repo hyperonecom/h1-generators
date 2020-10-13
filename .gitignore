@@ -3,3 +3,4 @@ dist
 clients
 .vscode
 openapitools.json
+yarn-error.log
