@@ -19,6 +19,9 @@ jobs:
         run: yarn
       - name: Generate TS client
         run: yarn start ts
+      - name: Test TS client
+        run: yarn start
+        working-directory: ./tests/ts
       - name: Checkout TS Client repo
         uses: actions/checkout@v2
         with:
