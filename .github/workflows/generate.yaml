@@ -18,7 +18,7 @@ jobs:
       - name: Copy passport file to home directory
         run: |
           mkdir -p ~/.h1
-          echo $PASSPORT_FILE > ~/.h1/passport.json
+          echo $PASSPORT_FILE | base64 --decode > ~/.h1/passport.json
       - name: Install dependencies
         run: yarn
       - name: Generate TS client
