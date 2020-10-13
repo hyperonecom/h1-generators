@@ -1,6 +1,5 @@
-import { Configuration } from "hyperone";
+import { Configuration, IamProjectApi } from "hyperone";
 import { getPassportCredentialsHelper } from "@hyperone/credentials"
-import { IamProjectApi } from 'hyperone'
 
 describe("library", () => {
   it("allows to create new configuration object", async () => {
