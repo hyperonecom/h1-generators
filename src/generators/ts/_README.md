@@ -1,6 +1,6 @@
 # h1-client-ts
 
-H1-client-ts is an automatically generated library used to interact with
+h1-client-ts is an automatically generated library used to interact with
 [HyperOne API](https://www.hyperone.com/tools/api/).
 
 ## Installation
@@ -25,13 +25,13 @@ npm i h1-client-ts
 The recommended way to use this package is to use it along with [@hyperone/credentials](https://www.npmjs.com/package/@hyperone/credentials) library.
 To to that install _@hyperone/credentials_ using your package manager:
 
-yarn:
+**yarn:**
 
 ```shell
 yarn add @hyperone/credentials
 ```
 
-npm:
+**npm:**
 
 ```shell
 npm i @hyperone/credentials
