@@ -20,6 +20,11 @@ export const generateTSClient = async (
   const typescriptFiles = await findFiles(outputDir, "ts");
   await replaceInManyFiles(typescriptFiles, "AnyType", "any");
 
+  await execute("rm -f README.md", outputDir)
+
+  const readmeLocation = join(__dirname, '_README.md')
+  await execute(`cp ${readmeLocation} README.md `, outputDir)
+
   await execute("yarn typedoc --plugin typedoc-plugin-markdown", outputDir);
   await execute("yarn build", outputDir);
 };
