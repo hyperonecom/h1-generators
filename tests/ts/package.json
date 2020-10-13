@@ -2,7 +2,7 @@
   "name": "h1-client-ts-tests",
   "version": "1.0.0",
   "main": "dist/index.js",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "dependencies": {
     "@hyperone/credentials": "^1.0.0",
     "hyperone": "file:../../clients/ts",
