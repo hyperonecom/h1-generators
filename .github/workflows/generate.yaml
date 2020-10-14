@@ -47,3 +47,23 @@ jobs:
           repository: kuskoman/h1-client-ts
       - name: Generate and test Go client
         run: yarn start go
+      - name: Checkout Go Client repo
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          repository: kuskoman/h1-client-go
+          path: h1-client-go
+      - name: Copy Go client
+        run: /bin/cp -rf ./clients/go/. h1-client-go
+      - name: Commit Go client
+        run: |
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Update $(date)"
+        working-directory: h1-client-go
+      - name: Push Go client
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PUSH_TOKEN }}
+          directory: h1-client-go
+          repository: kuskoman/h1-client-go
