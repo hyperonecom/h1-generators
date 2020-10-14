@@ -23,11 +23,8 @@ jobs:
           PASSPORT_FILE: ${{ secrets.PASSPORT_FILE }}
       - name: Install dependencies
         run: yarn
-      - name: Generate TS client
+      - name: Generate and test TS client
         run: yarn start ts
-      - name: Test TS client
-        run: yarn start
-        working-directory: ./tests/ts
       - name: Checkout TS Client repo
         uses: actions/checkout@v2
         with:
@@ -48,5 +45,5 @@ jobs:
           github_token: ${{ secrets.PUSH_TOKEN }}
           directory: h1-client-ts
           repository: kuskoman/h1-client-ts
-      - name: Generate Go client
+      - name: Generate and test Go client
         run: yarn start go
