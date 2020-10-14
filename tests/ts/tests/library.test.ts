@@ -13,13 +13,13 @@ describe("library", () => {
     )
     const projectApiClient = new IamProjectApi(config)
 
-    const response = await projectApiClient.projectList()
+    const response = await projectApiClient.iamProjectList()
     expect(response.status).toBe(200)
   })
 
   it("throws error when request is not signed", async () => {
     const projectApiClient = new IamProjectApi()
 
-    await expect(projectApiClient.projectList()).rejects.toThrow('Request failed with status code 401')
+    await expect(projectApiClient.iamProjectList()).rejects.toThrow('Request failed with status code 401')
   })
 });

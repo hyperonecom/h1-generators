@@ -46,5 +46,6 @@ yarn start ts
 `node` binary is **not** the recommended way to use this application,
 since it may lead to errors caused by incorrect paths from `__dirname` resolving.
 
-Running this command on Windows should properly generate clients, but lead to
-errors when application will try to run tests using `/bin/bash`.
+Running this command on Windows should generate clients, but lead to
+errors when application will try to run tests using `/bin/bash`, or other commands
+required to modify generated client are executed.
