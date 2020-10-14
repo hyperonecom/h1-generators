@@ -6,7 +6,6 @@
   "author": "kkm <kubasurdej@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
     "start": "ts-node src/index.ts"
   },
   "devDependencies": {
