@@ -4,6 +4,10 @@ import { GeneratorFunctionInput, GeneratorFunction } from "./types";
 import { runGoWorkflow } from "./workflows/go";
 import { runTSWorkflow } from "./workflows/ts";
 
+/* override default ts-node behavior since it
+ * does not allow to pass custom flags */
+process.on('unhandledRejection', e => { throw e }) 
+
 const clientsLocation = join(__dirname, "..", "clients");
 const openapiLocation = join(__dirname, "..", "openapi.json");
 const testsLocation = join(__dirname, "..", "tests");
