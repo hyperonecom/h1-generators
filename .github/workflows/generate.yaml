@@ -6,7 +6,12 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout generator repository
+        uses: actions/checkout@v1
+      - name: Download OpenAPI spec file
+        run: |
+          sudo apt install wget
+          wget -O openapi.json https://api.hyperone.com/v2/openapi.json
       - name: Set up Node 14.x
         uses: actions/setup-node@v1
         with:
