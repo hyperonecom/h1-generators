@@ -1,5 +1,5 @@
 import { join } from "path";
-import { generateTSClient } from "../generators/ts";
+import { generateGoClient } from "../generators/go";
 import { GeneratorFunctionInput } from "../types";
 import { execute } from "../utils/shellUtils";
 
@@ -10,6 +10,6 @@ export const runGoWorkflow = async ({
 }: GeneratorFunctionInput): Promise<void> => {
   const goClientLocation = join(clientsLocation, "go");
   const goTestsLocation = join(testsLocation, "go");
-  await generateTSClient(openapiLocation, goClientLocation);
+  await generateGoClient(openapiLocation, goClientLocation);
   await execute("/bin/bash ./execute.sh", goTestsLocation);
 };
