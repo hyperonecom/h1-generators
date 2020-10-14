@@ -48,3 +48,5 @@ jobs:
           github_token: ${{ secrets.PUSH_TOKEN }}
           directory: h1-client-ts
           repository: kuskoman/h1-client-ts
+      - name: Generate Go client
+        run: yarn start go

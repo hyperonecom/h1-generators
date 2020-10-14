@@ -1,6 +1,7 @@
 import { join } from "path";
 import { argv } from "process";
 import { GeneratorFunctionInput, GeneratorFunction } from "./types";
+import { runGoWorkflow } from "./workflows/go";
 import { runTSWorkflow } from "./workflows/ts";
 
 const clientsLocation = join(__dirname, "..", "clients");
@@ -16,6 +17,7 @@ const generatorInput: GeneratorFunctionInput = {
 
 const allWorkflows = new Map<string, GeneratorFunction>();
 allWorkflows.set("ts", runTSWorkflow);
+allWorkflows.set("go", runGoWorkflow);
 
 const runSelectedWorkflow = async () => {
   const workflow = allWorkflows.get(lang);
