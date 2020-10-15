@@ -14,7 +14,7 @@ const APIAudience = "https://api.hyperone.com/v2"
 // PassportContextProvider is a struct used to generate
 // contexts to sign requests from passport file
 type PassportContextProvider struct {
-	TokenProvider *providers.TokenAuthProvider
+	TokenProvider providers.TokenAuthProvider
 }
 
 // GetPassportContextProvider returns struct using HyperOne

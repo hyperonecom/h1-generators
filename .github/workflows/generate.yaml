@@ -52,6 +52,9 @@ jobs:
           repository: kuskoman/h1-client-ts
       - name: Generate and test Go client
         run: yarn start go
+      - name: Test building Go client
+        run: go build -o temporary_build && rm temporary_build
+        working-directory: ./clients/go/
       - name: Checkout Go Client repo
         uses: actions/checkout@v2
         with:
