@@ -14,7 +14,7 @@ replace repositories containing generated code in [generate.yaml](.github/workfl
 and add required environment variables:
 
 `PUSH_TOKEN`- [Personal Access Token (PAT)](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token)
-allowing you to push code to other repositories
+allowing you to push code to other repositories.
 
 `PASSPORT_FILE`- HyperOne passport file content, used to perform
 end-to-end tests with [HyperOne v2 API](https://api.hyperone.com/v2/docs) using [@hyperone/credentials](https://www.npmjs.com/package/@hyperone/credentials)
