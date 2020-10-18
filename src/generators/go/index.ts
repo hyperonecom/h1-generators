@@ -20,5 +20,4 @@ export const generateGoClient = async (
   await replaceInManyFiles(goFiles, "OneOfAnyTypeAnyType", "interface{}");
 
   await execute('go get -u ./...', outputDir)
-  await execute('go test ./...', outputDir)
 };

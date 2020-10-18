@@ -11,5 +11,10 @@ export const runGoWorkflow = async ({
   const goClientLocation = join(clientsLocation, "go");
   const goTestsLocation = join(testsLocation, "go");
   await generateGoClient(openapiLocation, goClientLocation);
-  await execute("/bin/bash ./execute.sh", goTestsLocation);
+  
+  const testFile = join(goTestsLocation, '_api_test.go')
+  await execute(`cp ${testFile} api_test.go`)
+
+  await execute('go test ./...', goClientLocation)
+  await execute('rm api_test.go')
 };
