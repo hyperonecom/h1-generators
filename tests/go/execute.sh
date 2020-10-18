@@ -1,1 +1,3 @@
-echo "Nothing here yet"
+cp _api_test.go ../../clients/go/api_test.go
+go test ../../clients/go/...
+rm ../../clients/go/api_test.go
