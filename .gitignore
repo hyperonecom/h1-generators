@@ -4,3 +4,4 @@ clients
 .vscode
 openapitools.json
 yarn-error.log
+openapi.json
