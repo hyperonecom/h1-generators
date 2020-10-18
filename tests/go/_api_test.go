@@ -7,12 +7,15 @@ import (
 )
 
 func TestPassportContext(t *testing.T) {
-	p := GetPassportContextProvider("")
-
-	projects, response, err := IamProjectList(p.Ctx())
+	cfg := NewConfiguration()
+	c := NewAPIClient(cfg)
+	p, err := GetPassportContextProvider("")
 	require.NoError(t, err)
 
-	if response.statusCode != 200 {
-		t.Errorf("Status code different than 200: %s", response.statusCode)
+	_, response, err := c.IamProjectApi.IamProjectList(p.Ctx(), nil)
+	require.NoError(t, err)
+
+	if response.StatusCode != 200 {
+		t.Errorf("Status code different than 200: %d", response.StatusCode)
 	}
 }
