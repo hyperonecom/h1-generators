@@ -1,4 +1,5 @@
 import { join } from "path";
+import { findFiles, replaceInManyFiles } from "../../utils/fileUtils";
 import { execute } from "../../utils/shellUtils";
 
 export const generateGoClient = async (
@@ -14,4 +15,7 @@ export const generateGoClient = async (
 
   const contextFileLocation = join(__dirname, '_passport_context.go')
   await execute(`cp ${contextFileLocation} passport_context.go `, outputDir)
+
+  const goFiles = await findFiles(outputDir, "go");
+  await replaceInManyFiles(goFiles, "OneOfAnyTypeAnyType", "interface{}");
 };
