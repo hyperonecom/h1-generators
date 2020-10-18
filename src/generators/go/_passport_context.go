@@ -39,8 +39,8 @@ func GetPassportContextProvider(passportLocation string) (*PassportContextProvid
 	return contextProvider, nil
 }
 
-// Ctx generates context to sign requests made to HyperOne API
-func (provider *PassportContextProvider) Ctx() (context.Context, error) {
+// CtxWithError generates context to sign requests made to HyperOne API
+func (provider *PassportContextProvider) CtxWithError() (context.Context, error) {
 	token, err := provider.TokenProvider.GetToken(APIAudience)
 
 	if err != nil {
@@ -53,4 +53,10 @@ func (provider *PassportContextProvider) Ctx() (context.Context, error) {
 	})
 
 	return ctx, nil
+}
+
+// Ctx generates context to sign request but does not return error
+func (provider *PassportContextProvider) Ctx() context.Context {
+	ctx, _ := provider.CtxWithError()
+	return ctx
 }
