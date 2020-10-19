@@ -47,10 +47,7 @@ func (provider *PassportContextProvider) CtxWithError() (context.Context, error)
 		return nil, err
 	}
 
-	ctx := context.WithValue(context.Background(), ContextAPIKey, APIKey{
-		Key:    token,
-		Prefix: "Bearer",
-	})
+	ctx := context.WithValue(context.Background(), ContextAccessToken, token)
 
 	return ctx, nil
 }
