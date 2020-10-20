@@ -1,6 +1,7 @@
 import { join } from "path";
 import { execute } from "../../utils/shellUtils";
 import { replaceInManyFiles, findFiles } from "../../utils/fileUtils";
+import { copyLicense } from "../../utils/licenseUtils";
 
 export const generateTSClient = async (
   openapiFile: string,
@@ -27,4 +28,6 @@ export const generateTSClient = async (
 
   await execute("yarn typedoc --plugin typedoc-plugin-markdown", outputDir);
   await execute("yarn build", outputDir);
+
+  await copyLicense('MIT', outputDir);
 };
