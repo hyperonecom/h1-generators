@@ -79,3 +79,25 @@ jobs:
           github_token: ${{ secrets.PUSH_TOKEN }}
           directory: h1-client-go
           repository: kuskoman/h1-client-go
+      - name: Generate and test Python client
+        run: yarn start python
+      - name: Checkout Python Client repo
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          repository: kuskoman/h1-client-python
+          path: h1-client-python
+      - name: Copy Python client
+        run: /bin/cp -rf ./clients/python/. h1-client-python
+      - name: Commit Python client
+        run: |
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Update $(date)"
+        working-directory: h1-client-python
+      - name: Push Python client
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PUSH_TOKEN }}
+          directory: h1-client-python
+          repository: kuskoman/h1-client-python
