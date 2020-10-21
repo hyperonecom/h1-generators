@@ -1,6 +1,5 @@
 import { join } from "path";
 import { execute } from "../../utils/shellUtils";
-import { replaceInManyFiles, findFiles } from "../../utils/fileUtils";
 import { copyLicense } from "../../utils/licenseUtils";
 
 export const generatePythonClient = async (
