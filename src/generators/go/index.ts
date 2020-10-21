@@ -21,5 +21,10 @@ export const generateGoClient = async (
   await replaceInManyFiles(goFiles, "OneOfAnyTypeAnyType", "interface{}");
 
   await execute('go get -u ./...', outputDir)
+
+  await execute('mv README.md docs/README.md', outputDir)
+  const replacementReadmeLocation = join(__dirname, '_README.md')
+  await execute(`cp ${replacementReadmeLocation} README.md`, outputDir)
+
   await copyLicense('MIT', outputDir)
 };
