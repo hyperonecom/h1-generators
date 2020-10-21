@@ -13,5 +13,5 @@ export const generatePythonClient = async (
     `yarn openapi-generator-cli generate -i ${openapiFile} -c ${config} -g ${generator} -o ${outputDir}`
   );
 
-  await copyLicense('MIT', outputDir);
+  await copyLicense("MIT", outputDir);
 };

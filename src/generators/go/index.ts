@@ -14,17 +14,17 @@ export const generateGoClient = async (
     `yarn openapi-generator-cli generate -i ${openapiFile} -c ${config} -g ${generator} -o ${outputDir}`
   );
 
-  const contextFileLocation = join(__dirname, '_passport_context.go')
-  await execute(`cp ${contextFileLocation} passport_context.go `, outputDir)
+  const contextFileLocation = join(__dirname, "_passport_context.go");
+  await execute(`cp ${contextFileLocation} passport_context.go `, outputDir);
 
   const goFiles = await findFiles(outputDir, "go");
   await replaceInManyFiles(goFiles, "OneOfAnyTypeAnyType", "interface{}");
 
-  await execute('go get -u ./...', outputDir)
+  await execute("go get -u ./...", outputDir);
 
-  await execute('mv README.md docs/README.md', outputDir)
-  const replacementReadmeLocation = join(__dirname, '_README.md')
-  await execute(`cp ${replacementReadmeLocation} README.md`, outputDir)
+  await execute("mv README.md docs/README.md", outputDir);
+  const replacementReadmeLocation = join(__dirname, "_README.md");
+  await execute(`cp ${replacementReadmeLocation} README.md`, outputDir);
 
-  await copyLicense('MIT', outputDir)
+  await copyLicense("MIT", outputDir);
 };

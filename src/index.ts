@@ -7,7 +7,9 @@ import { runTSWorkflow } from "./workflows/ts";
 
 /* override default ts-node behavior since it
  * does not allow to pass custom flags */
-process.on('unhandledRejection', e => { throw e }) 
+process.on("unhandledRejection", (e) => {
+  throw e;
+});
 
 const clientsLocation = join(__dirname, "..", "clients");
 const openapiLocation = join(__dirname, "..", "openapi.json");
@@ -23,7 +25,7 @@ const generatorInput: GeneratorFunctionInput = {
 const allWorkflows = new Map<string, GeneratorFunction>();
 allWorkflows.set("ts", runTSWorkflow);
 allWorkflows.set("go", runGoWorkflow);
-allWorkflows.set("python", runPythonWorkflow)
+allWorkflows.set("python", runPythonWorkflow);
 
 const runSelectedWorkflow = async () => {
   const workflow = allWorkflows.get(lang);
