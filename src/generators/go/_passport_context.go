@@ -14,12 +14,17 @@ const APIAudience = "https://api.hyperone.com/v2"
 // PassportContextProvider is a struct used to generate
 // contexts to sign requests from passport file
 type PassportContextProvider struct {
-	TokenProvider providers.TokenAuthProvider
+	TokenProvider   providers.TokenAuthProvider
+	PassportContext context.Context
 }
 
 // GetPassportContextProvider returns struct using HyperOne
 // passport file to generate context for signing requests
-func GetPassportContextProvider(passportLocation string) (*PassportContextProvider, error) {
+func GetPassportContextProvider(passportLocation string, ctx context.Context) (*PassportContextProvider, error) {
+	if ctx == nil {
+		ctx = context.Background()
+	}
+
 	passport, err := credentials.GetPassportCredentialsHelper(passportLocation)
 
 	if err != nil {
@@ -33,7 +38,8 @@ func GetPassportContextProvider(passportLocation string) (*PassportContextProvid
 	}
 
 	contextProvider := &PassportContextProvider{
-		TokenProvider: passport,
+		TokenProvider:   passport,
+		PassportContext: ctx,
 	}
 
 	return contextProvider, nil
@@ -47,7 +53,7 @@ func (provider *PassportContextProvider) CtxWithError() (context.Context, error)
 		return nil, err
 	}
 
-	ctx := context.WithValue(context.Background(), ContextAccessToken, token)
+	ctx := context.WithValue(provider.PassportContext, ContextAccessToken, token)
 
 	return ctx, nil
 }

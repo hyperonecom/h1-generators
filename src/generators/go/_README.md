@@ -10,13 +10,17 @@ Example library usage:
 ```go
 package somepackage
 
-import "github.com/hyperonecom/h1-client-go"
+import (
+    "context"
+
+    "github.com/hyperonecom/h1-client-go"
+)
 
 func main() {
     cfg := h1.NewConfiguration() // create new Configuration struct
     c := h1.NewAPIClient(cfg) // create new client
 
-    p, err := h1.GetPassportContextProvider("") // get authentication helper
+    p, err := h1.GetPassportContextProvider("", context.Background()) // get authentication helper
     if err != nil {
         // handle error with getting passport provider
     }
@@ -53,7 +57,9 @@ using [h1-credentials-helper-go library](https://github.com/hyperonecom/h1-crede
 To use it in code to create authorization context get passport context provider:
 
 ```go
-p, err := h1.GetPassportContextProvider(""/* empty string means that passport file is located under ~/.h1 */)
+// empty string means that passport file is located under ~/.h1
+// nil as second value is replaced with context.Background() if not given
+p, err := h1.GetPassportContextProvider("", context.Background())
 if err != nil {
     log.Panic(err)
 }
