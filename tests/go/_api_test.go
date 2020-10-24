@@ -1,6 +1,7 @@
 package h1
 
 import (
+	"context"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -9,7 +10,7 @@ import (
 func TestPassportContext(t *testing.T) {
 	cfg := NewConfiguration()
 	c := NewAPIClient(cfg)
-	p, err := GetPassportContextProvider("")
+	p, err := GetPassportContextProvider("", context.Background())
 	require.NoError(t, err)
 
 	_, response, err := c.IamProjectApi.IamProjectList(p.Ctx(), nil)
@@ -23,7 +24,7 @@ func TestPassportContext(t *testing.T) {
 func TestPassportContextWithError(t *testing.T) {
 	cfg := NewConfiguration()
 	c := NewAPIClient(cfg)
-	p, err := GetPassportContextProvider("")
+	p, err := GetPassportContextProvider("", nil)
 	require.NoError(t, err)
 
 	ctx, err := p.CtxWithError()
