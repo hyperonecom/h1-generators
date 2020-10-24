@@ -1,1 +1,2 @@
-echo "No tests yet"
+pip install -e .
+python test.py
