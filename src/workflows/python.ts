@@ -11,6 +11,5 @@ export const runPythonWorkflow = async ({
   const pythonClientLocation = join(clientsLocation, "python");
   const pythonTestsLocation = join(testsLocation, "python");
   await generatePythonClient(openapiLocation, pythonClientLocation);
-  await execute("pip install -r requirements.txt", pythonClientLocation);
   await execute("/bin/bash ./execute.sh", pythonTestsLocation);
 };
