@@ -44,7 +44,7 @@ Example:
 from <credentials library name> import get_passport_credentials_helper
 from <client library name> import Configuration, ApiClient, IamProjectApi
 
-provider = get_passport_credentials_helper() # you can optionally pas passport file location
+provider = get_passport_credentials_helper()
 cfg = Configuration()
 cfg.access_token = provider.get_token("https://api.hyperone.com/v2")
 api_client = ApiClient(cfg)
