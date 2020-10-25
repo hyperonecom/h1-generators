@@ -13,6 +13,10 @@ export const generatePythonClient = async (
     `yarn openapi-generator-cli generate -i ${openapiFile} -c ${config} -g ${generator} -o ${outputDir}`
   );
 
+  await execute("mv README.md docs/README.md", outputDir);
+  const replacementReadmeLocation = join(__dirname, "_README.md");
+  await execute(`cp ${replacementReadmeLocation} README.md`, outputDir);
+
   await execute("pip install .", outputDir);
 
   await copyLicense("MIT", outputDir);
