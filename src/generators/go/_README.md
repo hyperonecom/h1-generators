@@ -118,6 +118,27 @@ func main() {
 projects, _, err := client.IamProjectApi.IamProjectList(provider.Ctx(), nil)
 ```
 
+### "Prefer" header
+
+Some operations on API may be time-consuming. In this case server
+may return [HTTP Status 202](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202)
+with `x-event-id` header containing request ID, and handle the operation asynchronously.
+If you want to avoid this behavior, you can send `prefer` header [RFC7240](https://tools.ietf.org/html/rfc7240)
+with your request, which will cause returning the operation result as response to this request.
+
+To use this header from sdk simply use `AddDefaultHeader` method on `Configuration` object.
+
+Example:
+
+```go
+cfg := h1.NewConfiguration()
+cfg.AddDefaultHeader("prefer", "respond-async,wait=86400")
+c := h1.NewAPIClient(cfg)
+```
+
+You can get more information about `prefer` usage in HyperOne API
+[in its documentation](https://www.hyperone.com/tools/api/concepts/headers.html#naglowek-prefer).
+
 ## Documentation
 
 For full documentation of this library check [docs directory](docs/).
