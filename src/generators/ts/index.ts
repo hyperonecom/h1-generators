@@ -1,6 +1,6 @@
 import { join } from "path";
 import { execute } from "../../utils/shellUtils";
-import { replaceInManyFiles, findFiles } from "../../utils/fileUtils";
+import { replaceInFiles, findFiles } from "../../utils/fileUtils";
 import { copyLicense } from "../../utils/licenseUtils";
 
 export const generateTSClient = async (
@@ -19,7 +19,7 @@ export const generateTSClient = async (
   );
 
   const typescriptFiles = await findFiles(outputDir, "ts");
-  await replaceInManyFiles(typescriptFiles, "AnyType", "any");
+  await replaceInFiles(typescriptFiles, "AnyType", "any");
 
   await execute("rm -f README.md", outputDir);
 

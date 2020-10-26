@@ -15,7 +15,7 @@ export const findFiles = async (
     .map((file) => join(location, file));
 };
 
-export const replaceInManyFiles = async (
+export const replaceInFiles = async (
   files: string[],
   textToReplace: string,
   replacementText: string
