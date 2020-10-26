@@ -1,5 +1,9 @@
 import { join } from "path";
-import { findFiles, replaceInFiles } from "../../utils/fileUtils";
+import {
+  findFiles,
+  fixPathsInReplacedReadme,
+  replaceInFiles,
+} from "../../utils/fileUtils";
 import { copyLicense } from "../../utils/licenseUtils";
 import { execute } from "../../utils/shellUtils";
 
@@ -23,6 +27,9 @@ export const generateGoClient = async (
   await execute("go get -u ./...", outputDir);
 
   await execute("mv README.md docs/README.md", outputDir);
+  const readmeLocation = join(outputDir, "docs", "README.md");
+  await fixPathsInReplacedReadme(readmeLocation);
+
   const replacementReadmeLocation = join(__dirname, "_README.md");
   await execute(`cp ${replacementReadmeLocation} README.md`, outputDir);
 

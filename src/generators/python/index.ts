@@ -1,6 +1,7 @@
 import { join } from "path";
 import { execute } from "../../utils/shellUtils";
 import { copyLicense } from "../../utils/licenseUtils";
+import { fixPathsInReplacedReadme } from "../../utils/fileUtils";
 
 export const generatePythonClient = async (
   openapiFile: string,
@@ -14,6 +15,9 @@ export const generatePythonClient = async (
   );
 
   await execute("mv README.md docs/README.md", outputDir);
+  const readmeLocation = join(outputDir, "docs", "README.md");
+  await fixPathsInReplacedReadme(readmeLocation);
+
   const replacementReadmeLocation = join(__dirname, "_README.md");
   await execute(`cp ${replacementReadmeLocation} README.md`, outputDir);
 
