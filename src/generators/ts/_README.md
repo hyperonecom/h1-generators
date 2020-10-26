@@ -57,7 +57,7 @@ Example:
 
 ```typescript
 import { getPassportCredentialsHelper } from "@hyperone/credentials";
-import { Configuration, IamProjectApi } from "hyperone";
+import { Configuration, IamProjectApi } from "h1-client-ts";
 
 const helper = getPassportCredentialsHelper();
 const config = new Configuration({
