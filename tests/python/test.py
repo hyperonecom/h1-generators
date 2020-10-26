@@ -15,12 +15,9 @@ def test_access_token_configuration():
 def test_api_key_configuration():
     audience = "https://api.hyperone.com/v2"
     provider = get_passport_credentials_helper()
-    cfg = Configuration(api_key={
-        "jwt": provider.get_token(audience)
-    },
-        api_key_prefix={
-        "jwt": "Bearer"
-    })
+    cfg = Configuration()
+    cfg.api_key["api_key"] = provider.get_token(audience)
+    cfg.api_key_prefix["api_key"] = "Bearer"
 
     api_client = ApiClient(cfg)
     project_api = IamProjectApi(api_client)
