@@ -28,9 +28,9 @@ Then import use it as a token provider in your code:
 from <credentials library name> import get_passport_credentials_helper
 from <client library name> import ApiClient, Configuration
 
-provider = get_passport_credentials_helper() # you can optionally pas passport file location
+provider = get_passport_credentials_helper() # you can optionally pass passport file location
 cfg = Configuration()
-cfg.access_token = provider.get_token("https://api.hyperone.com/v2")
+cfg.access_token = provider.get_token("https://api.hyperone.com/v2") # works only for 5 minutes TODO: change it
 api_client = ApiClient(cfg)
 ```
 
