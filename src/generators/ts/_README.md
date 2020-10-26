@@ -74,6 +74,30 @@ const getProjects = async () => {
 getProjects();
 ```
 
+### "Prefer" header
+
+Some operations on API may be time-consuming. In this case server
+may return [HTTP Status 202](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202)
+with `x-event-id` header containing request ID, and handle the operation asynchronously.
+If you want to avoid this behavior, you can send `prefer` header [RFC7240](https://tools.ietf.org/html/rfc7240)
+with your request, which will cause returning the operation result as response to this request.
+
+To use this header from sdk simply add `baseOptions` object to your configuration:
+
+```typescript
+const config = new Configuration({
+  accessToken: () => helper.getToken("https://api.hyperone.com/v2"),
+  baseOptions: {
+    headers: {
+      Prefer: `respond-async,wait=${60 * 60 * 24}`,
+    },
+  },
+});
+```
+
+You can get more information about `prefer` usage in HyperOne API
+[in its documentation](https://www.hyperone.com/tools/api/concepts/headers.html#naglowek-prefer).
+
 ## Documentation
 
 For full documentation of this library check [docs directory](docs/).
