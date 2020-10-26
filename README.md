@@ -17,8 +17,7 @@ and add required environment variables:
 allowing you to push code to other repositories.
 
 `PASSPORT_FILE`- HyperOne passport file content, used to perform
-end-to-end tests with [HyperOne v2 API](https://api.hyperone.com/v2/docs) using [@hyperone/credentials](https://www.npmjs.com/package/@hyperone/credentials)
-library.
+end-to-end tests with [HyperOne v2 API](https://api.hyperone.com/v2/docs) using HyperOne credential libraries.
 
 ### Generating client on personal machine
 
