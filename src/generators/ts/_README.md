@@ -49,7 +49,8 @@ const config = new Configuration({
 });
 ```
 
-You can acquire more knoweledge about _@hyperone/credentials_ library on [its GitHub page](https://github.com/hyperonecom/h1-credentials-helper-ts).
+You can acquire more knoweledge about [@hyperone/credentials](https://www.npmjs.com/package/@hyperone/credentials)
+library on [its GitHub page](https://github.com/hyperonecom/h1-credentials-helper-ts).
 
 Configuration object allows you to use choosen API client.
 
