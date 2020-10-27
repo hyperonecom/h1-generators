@@ -30,5 +30,5 @@ export const replaceInFiles = async (
 };
 
 export const fixPathsInReplacedReadme = async (readmeLocation: string) => {
-  return replaceInFiles([readmeLocation], "docs/", "./");
+  return replaceInFiles([readmeLocation], "(docs/", "(./");
 };
