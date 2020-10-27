@@ -18,6 +18,17 @@ export const generatePythonClient = async (
   const readmeLocation = join(outputDir, "docs", "README.md");
   await fixPathsInReplacedReadme(readmeLocation);
 
+  const pythonPackageLocation = join(outputDir, "h1");
+  await execute(
+    "cp configuration.py configuration_base.py",
+    pythonPackageLocation
+  );
+  const customConfigurationFileLocation = join(__dirname, "_configuration.py");
+  await execute(
+    `cp ${customConfigurationFileLocation} configuration.py`,
+    pythonPackageLocation
+  );
+
   const replacementReadmeLocation = join(__dirname, "_README.md");
   await execute(`cp ${replacementReadmeLocation} README.md`, outputDir);
 
