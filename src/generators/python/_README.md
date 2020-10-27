@@ -30,7 +30,8 @@ from <client library name> import ApiClient, Configuration
 
 provider = get_passport_credentials_helper() # you can optionally pass passport file location
 cfg = Configuration()
-cfg.access_token = provider.get_token("https://api.hyperone.com/v2") # works only for 5 minutes TODO: change it
+cfg.access_token = cfg.access_token_function = lambda: provider.get_token(
+        "https://api.hyperone.com/v2")
 api_client = ApiClient(cfg)
 ```
 
