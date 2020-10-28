@@ -22,7 +22,7 @@ To to that install < credentials library name > using [pip](https://pypi.org/pro
 library installation description
 ```
 
-Then import use it as a token provider in your code:
+Then import it and use it as a token provider in your code:
 
 ```python
 from <credentials library name> import get_passport_credentials_helper
