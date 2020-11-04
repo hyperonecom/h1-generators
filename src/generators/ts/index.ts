@@ -21,6 +21,9 @@ export const generateTSClient = async (
   const typescriptFiles = await findFiles(outputDir, "ts");
   await replaceInFiles(typescriptFiles, "AnyType", "any");
 
+  const readmeFile = [join(outputDir, "package.json")];
+  await replaceInFiles(readmeFile, "prepublishOnly", "prepack");
+
   await execute("rm -f README.md", outputDir);
 
   const readmeLocation = join(__dirname, "_README.md");
