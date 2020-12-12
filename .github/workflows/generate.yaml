@@ -39,7 +39,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-          repository: kuskoman/h1-client-ts
+          repository: hyperonecom/h1-client-ts
           path: h1-client-ts
       - name: Copy TS client
         run: /bin/cp -rf ./clients/ts/. h1-client-ts
@@ -53,7 +53,7 @@ jobs:
         with:
           github_token: ${{ secrets.PUSH_TOKEN }}
           directory: h1-client-ts
-          repository: kuskoman/h1-client-ts
+          repository: hyperonecom/h1-client-ts
       - name: Generate and test Go client
         run: yarn start go
       - name: Test building Go client
@@ -64,7 +64,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-          repository: kuskoman/h1-client-go
+          repository: hyperonecom/h1-client-go
           path: h1-client-go
       - name: Copy Go client
         run: /bin/cp -rf ./clients/go/. h1-client-go
@@ -78,7 +78,7 @@ jobs:
         with:
           github_token: ${{ secrets.PUSH_TOKEN }}
           directory: h1-client-go
-          repository: kuskoman/h1-client-go
+          repository: hyperonecom/h1-client-go
       - name: Set up Python 3.6
         uses: actions/setup-python@v2
         with:
@@ -90,7 +90,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-          repository: kuskoman/h1-client-python
+          repository: hyperonecom/h1-client-python
           path: h1-client-python
       - name: Copy Python client
         run: /bin/cp -rf ./clients/python/. h1-client-python
@@ -104,4 +104,4 @@ jobs:
         with:
           github_token: ${{ secrets.PUSH_TOKEN }}
           directory: h1-client-python
-          repository: kuskoman/h1-client-python
+          repository: hyperonecom/h1-client-python
