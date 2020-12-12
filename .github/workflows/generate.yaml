@@ -53,7 +53,7 @@ jobs:
         with:
           github_token: ${{ secrets.PUSH_TOKEN }}
           directory: h1-client-ts
-          repository: hyperonecom/h1-client-ts
+          repository: hyperonecom/h1-client-js
       - name: Generate and test Go client
         run: yarn start go
       - name: Test building Go client
