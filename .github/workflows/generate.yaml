@@ -39,7 +39,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-          repository: hyperonecom/h1-client-ts
+          repository: hyperonecom/h1-client-js
           path: h1-client-ts
       - name: Copy TS client
         run: /bin/cp -rf ./clients/ts/. h1-client-ts
