@@ -20,6 +20,8 @@ export const generateTSClient = async (
 
   const typescriptFiles = await findFiles(outputDir, "ts");
   await replaceInFiles(typescriptFiles, "AnyType", "any");
+  await replaceInFiles(typescriptFiles, "source: ;", "source: any;");
+  await replaceInFiles(typescriptFiles, "source?: ;", "source?: any;");
 
   const readmeFile = [join(outputDir, "package.json")];
   await replaceInFiles(readmeFile, "prepublishOnly", "prepack");
