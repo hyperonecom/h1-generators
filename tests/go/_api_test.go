@@ -13,7 +13,7 @@ func TestPassportContext(t *testing.T) {
 	p, err := GetPassportContextProvider("", context.Background())
 	require.NoError(t, err)
 
-	_, response, err := c.IamProjectApi.IamProjectList(p.Ctx(), nil)
+	_, response, err := c.IamProjectApi.IamProjectList(p.Ctx()).Execute()
 	require.NoError(t, err)
 
 	if response.StatusCode != 200 {
@@ -30,7 +30,7 @@ func TestPassportContextWithError(t *testing.T) {
 	ctx, err := p.CtxWithError()
 	require.NoError(t, err)
 
-	_, response, err := c.IamProjectApi.IamProjectList(ctx, nil)
+	_, response, err := c.IamProjectApi.IamProjectList(ctx).Execute()
 	require.NoError(t, err)
 
 	if response.StatusCode != 200 {
