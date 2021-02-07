@@ -7,7 +7,28 @@ on:
 
 jobs:
   generate:
+    strategy:
+      matrix:
+        include:
+          - language: ts
+            copy: "/bin/cp -rf ./clients/ts/. h1-client-ts"
+            directory: "h1-client-ts"
+            repository: "hyperonecom/h1-client-js"
+            build: "yarn"
+          - language: go
+            copy: "/bin/cp -rf ./clients/go/. h1-client-go"
+            directory: "h1-client-go"
+            repository: "hyperonecom/h1-client-go"
+            build: "go build -o temporary_build && rm temporary_build"
+          - language: python
+            copy: "/bin/cp -rf ./clients/python/. h1-client-python"
+            directory: "h1-client-python"
+            repository: "{{matrix.repository}}"
+            build: "pip install -e ."
     runs-on: ubuntu-latest
+    env:
+      GO_POST_PROCESS_FILE: "/usr/local/bin/gofmt -w"
+      LANGUAGE: "${{ matrix.language }}"
     steps:
       - name: Checkout generator repository
         uses: actions/checkout@v1
@@ -23,6 +44,10 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.14.x
+      - name: Set up Python 3.6
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
       - name: Configure github credentials
         run: |
           git config --global user.email "action@github.com"
@@ -35,79 +60,29 @@ jobs:
           PASSPORT_FILE: ${{ secrets.PASSPORT_FILE }}
       - name: Install dependencies
         run: yarn
-      - name: Generate and test TS client
-        run: yarn start ts
-      - name: Checkout TS Client repo
+      - name: Generate and test client
+        run: yarn start "$LANGUAGE"
+      - name: Test building client
+        run: "${{ matrix.build }}"
+        working-directory: "./clients/${{ matrix.language }}"
+      - name: Checkout Client repo
         uses: actions/checkout@v2
         with:
           persist-credentials: false
           fetch-depth: 0
-          repository: hyperonecom/h1-client-js
-          path: h1-client-ts
-      - name: Copy TS client
-        run: /bin/cp -rf ./clients/ts/. h1-client-ts
-      - name: Commit TS client
+          repository: "${{ matrix.repository }}"
+          path: "${{ matrix.directory }}"
+      - name: Copy client
+        run: "${{ matrix.copy }}"
+      - name: Commit client
         run: |
           git add .
           git diff-index --quiet HEAD || git commit -m "Update $(date)"
-        working-directory: h1-client-ts
-      - name: Push TS client
+        working-directory: "${{ matrix.directory }}"
+      - name: Push client
         uses: ad-m/github-push-action@master
         if: "${{ success() && github.ref == 'refs/heads/master' }}"
         with:
           github_token: ${{ secrets.PUSH_TOKEN }}
-          directory: h1-client-ts
-          repository: hyperonecom/h1-client-js
-      - name: Generate and test Go client
-        run: yarn start go
-      - name: Test building Go client
-        run: go build -o temporary_build && rm temporary_build
-        working-directory: ./clients/go/
-      - name: Checkout Go Client repo
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-          repository: hyperonecom/h1-client-go
-          path: h1-client-go
-      - name: Copy Go client
-        run: /bin/cp -rf ./clients/go/. h1-client-go
-      - name: Commit Go client
-        run: |
-          git add .
-          git diff-index --quiet HEAD || git commit -m "Update $(date)"
-        working-directory: h1-client-go
-      - name: Push Go client
-        uses: ad-m/github-push-action@master
-        if: "${{ success() && github.ref == 'refs/heads/master' }}"
-        with:
-          github_token: ${{ secrets.PUSH_TOKEN }}
-          directory: h1-client-go
-          repository: hyperonecom/h1-client-go
-      - name: Set up Python 3.6
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.6
-      - name: Generate and test Python client
-        run: yarn start python
-      - name: Checkout Python Client repo
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-          repository: hyperonecom/h1-client-python
-          path: h1-client-python
-      - name: Copy Python client
-        run: /bin/cp -rf ./clients/python/. h1-client-python
-      - name: Commit Python client
-        run: |
-          git add .
-          git diff-index --quiet HEAD || git commit -m "Update $(date)"
-        working-directory: h1-client-python
-      - name: Push Python client
-        uses: ad-m/github-push-action@master
-        if: "${{ success() && github.ref == 'refs/heads/master' }}"
-        with:
-          github_token: ${{ secrets.PUSH_TOKEN }}
-          directory: h1-client-python
-          repository: hyperonecom/h1-client-python
+          directory: "${{ matrix.directory }}"
+          repository: "${{ matrix.repository }}"
