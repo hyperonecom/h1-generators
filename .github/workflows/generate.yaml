@@ -53,6 +53,7 @@ jobs:
         working-directory: h1-client-ts
       - name: Push TS client
         uses: ad-m/github-push-action@master
+        if: "${{ success() && github.ref == 'refs/heads/master' }}"
         with:
           github_token: ${{ secrets.PUSH_TOKEN }}
           directory: h1-client-ts
@@ -78,6 +79,7 @@ jobs:
         working-directory: h1-client-go
       - name: Push Go client
         uses: ad-m/github-push-action@master
+        if: "${{ success() && github.ref == 'refs/heads/master' }}"
         with:
           github_token: ${{ secrets.PUSH_TOKEN }}
           directory: h1-client-go
@@ -104,6 +106,7 @@ jobs:
         working-directory: h1-client-python
       - name: Push Python client
         uses: ad-m/github-push-action@master
+        if: "${{ success() && github.ref == 'refs/heads/master' }}"
         with:
           github_token: ${{ secrets.PUSH_TOKEN }}
           directory: h1-client-python
