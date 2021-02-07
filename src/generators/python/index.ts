@@ -11,7 +11,7 @@ export const generatePythonClient = async (
   const generator = "python";
 
   await execute(
-    `yarn openapi-generator-cli generate -i ${openapiFile} -c ${config} -g ${generator} -o ${outputDir}`
+    `yarn openapi-generator-cli generate --git-user-id "hyperonecom" --git-repo-id "h1-client-python" -i ${openapiFile} -c ${config} -g ${generator} -o ${outputDir}`
   );
 
   await execute("mv README.md docs/README.md", outputDir);
