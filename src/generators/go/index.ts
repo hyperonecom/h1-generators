@@ -15,7 +15,7 @@ export const generateGoClient = async (
   const generator = "go";
 
   await execute(
-    `yarn openapi-generator-cli generate -i ${openapiFile} -c ${config} -g ${generator} -o ${outputDir}`
+    `yarn openapi-generator-cli generate --git-user-id "hyperonecom" --git-repo-id "h1-client-go" -i ${openapiFile} -c ${config} -g ${generator} -o ${outputDir}`
   );
 
   const contextFileLocation = join(__dirname, "_passport_context.go");

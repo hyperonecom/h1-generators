@@ -24,7 +24,7 @@ func main() {
     if err != nil {
         // handle error with getting passport provider
     }
-    projects, response, err := c.IamProjectApi.IamProjectList(p.Ctx(), nil) // getting IamProjectList using IamProjectApi struct
+    projects, response, err := c.IamProjectApi.IamProjectList(p.Ctx()).Execute() // getting IamProjectList using IamProjectApi struct
 
     if err != nil {
         // handle error with request
@@ -70,7 +70,7 @@ Then use `Ctx`, or `CtxWithError` method.
 `Ctx` method usage:
 
 ```go
-projects, response, err := c.IamProjectApi.IamProjectList(p.Ctx(), nil)
+projects, response, err := c.IamProjectApi.IamProjectList(p.Ctx()).Execute()
 // [...]
 ```
 
@@ -82,7 +82,7 @@ if err != nil {
     log.panic(err)
 }
 
-projects, response, err := c.IamProjectApi.IamProjectList(p.Ctx(), nil)
+projects, response, err := c.IamProjectApi.IamProjectList(p.Ctx()).Execute()
 ```
 
 The difference between `Ctx` method and `CtxWithError` is that `Ctx` does not
@@ -105,7 +105,7 @@ func main() {
     for {
         time.Sleep(5 * time.Minute)
         // this will not work, since token will be invalid after 5 minutes
-        projects, _, err := client.IamProjectApi.IamProjectList(ctx, nil)
+        projects, _, err := client.IamProjectApi.IamProjectList(ctx).Execute()
         // [...]
     }
 }
@@ -115,7 +115,7 @@ func main() {
 
 ```go
 // [...]
-projects, _, err := client.IamProjectApi.IamProjectList(provider.Ctx(), nil)
+projects, _, err := client.IamProjectApi.IamProjectList(provider.Ctx()).Execute()
 ```
 
 ### "Prefer" header

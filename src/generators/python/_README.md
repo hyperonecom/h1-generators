@@ -25,8 +25,8 @@ library installation description
 Then import it and use it as a token provider in your code:
 
 ```python
-from <credentials library name> import get_passport_credentials_helper
-from <client library name> import ApiClient, Configuration
+from credentials import get_passport_credentials_helper
+from h1 import ApiClient, Configuration
 
 provider = get_passport_credentials_helper() # you can optionally pass passport file location
 cfg = Configuration()
@@ -42,8 +42,9 @@ Configuration object allows you to use choosen API client.
 Example:
 
 ```python
-from <credentials library name> import get_passport_credentials_helper
-from <client library name> import Configuration, ApiClient, IamProjectApi
+from credentials import get_passport_credentials_helper
+from h1 import Configuration, ApiClient
+from h1.api.iam_project_api import IamProjectApi
 
 provider = get_passport_credentials_helper()
 cfg = Configuration()
@@ -73,7 +74,8 @@ api_client = ApiClient(cfg, header_name="prefer", header_value="respond-async,wa
 Full example:
 
 ```python
-from <client library name> import Configuration, ApiClient, IamProjectApi
+from h1 import Configuration, ApiClient
+from h1.api.iam_project_api import IamProjectApi
 
 cfg = Configuration()
 api_client = ApiClient(cfg, header_name="prefer", header_value="respond-async,wait=86400")
