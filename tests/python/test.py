@@ -1,6 +1,6 @@
 from credentials import get_passport_credentials_helper
-from h1 import Configuration, ApiClient, IamProjectApi
-
+from h1 import Configuration, ApiClient
+from h1.api.iam_project_api import IamProjectApi
 
 def test_access_token_configuration():
     provider = get_passport_credentials_helper()
