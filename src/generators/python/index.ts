@@ -67,7 +67,7 @@ export const generatePythonClient = async (
   const replacementReadmeLocation = join(__dirname, "_README.md");
   await execute(`cp ${replacementReadmeLocation} README.md`, outputDir);
 
-  await execute("python3.7 -m pip install .", outputDir);
+  await execute("python -m pip install .", outputDir);
 
   await copyLicense("MIT", outputDir);
 };
