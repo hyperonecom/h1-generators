@@ -8,6 +8,7 @@ on:
 jobs:
   generate:
     strategy:
+      fail-fast: false
       matrix:
         include:
           - language: ts
