@@ -24,7 +24,7 @@ jobs:
           - language: python
             copy: "/bin/cp -rf ./clients/python/. h1-client-python"
             directory: "h1-client-python"
-            repository: "{{matrix.repository}}"
+            repository: "hyperonecom/h1-client-python"
             build: "pip install -e ."
     runs-on: ubuntu-latest
     env:
