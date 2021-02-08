@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 
-	credentials "github.com/kuskoman/h1-credentials-helper-go"
-	"github.com/kuskoman/h1-credentials-helper-go/providers"
+	credentials "github.com/hyperonecom/h1-credentials-helper-go"
+	"github.com/hyperonecom/h1-credentials-helper-go/providers"
 )
 
 // APIAudience is the default audience used with HyperOne v2 API

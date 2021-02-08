@@ -2,7 +2,7 @@
   "name": "h1-generators",
   "version": "1.0.0",
   "main": "dist/index.js",
-  "repository": "git@github.com:kuskoman/h1-generators.git",
+  "repository": "git@github.com:hyperonecom/h1-generators.git",
   "author": "kkm <kubasurdej@gmail.com>",
   "license": "MIT",
   "scripts": {
