@@ -10,6 +10,7 @@ export const execute = async (cmd: string, cwd?: string) => {
   return new Promise((resolve, reject) => {
     exec(cmd, options, (err, stdout, stderr) => {
       if (err) {
+        console.log(`Command '${cmd}' execution failed`)
         reject(err);
       } else {
         console.log(stdout);
