@@ -5,13 +5,17 @@ import { execute } from "../../utils/shellUtils";
 import { copyLicense } from "../../utils/licenseUtils";
 import { fixPathsInReplacedReadme } from "../../utils/fileUtils";
 
-const dropObjectPattern = (s: any) => {
+
+const simplifyPattern = (value: string) => {
+  if(value) value = value.replace(/\?\<.+?\>/, '')
+}
+const simplifyObjectPattern = (s: any) => {
   if (!s.properties) return;
   for (const property of Object.values(s.properties)) {
     const p: any = property;
-    delete p.pattern;
+    p.pattern = simplifyPattern(p.pattern);
     if (p.items) {
-      dropObjectPattern(p.items)
+      simplifyObjectPattern(p.items)
     }
   }
 }
@@ -29,7 +33,7 @@ export const generatePythonClient = async (
   // example value: '.components.schemas.iam_project_policy_create.properties.resource'
   for (const schema of Object.values(specification.components.schemas)) {
     const s: any = schema;
-    dropObjectPattern(s);
+    simplifyObjectPattern(s);
   }
   // example value: .paths["/iam/project/{projectId}/policy"].get.parameters
   for (const endpoint of Object.values(specification.paths)) {
@@ -40,7 +44,7 @@ export const generatePythonClient = async (
       for (const parameter of o.parameters) {
         const p: any = parameter;
         if (!p.schema) continue;
-        delete p.schema.pattern;
+        p.schema.pattern = simplifyPattern(p.pattern);
       }
     }
   }
